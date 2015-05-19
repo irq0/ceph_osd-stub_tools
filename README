@@ -1,0 +1,4 @@
+Start srv.py. Needs to listen on localhost:5000
+Start ceph_osd with stub suppport
+Run ./stub
+

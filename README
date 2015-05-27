@@ -1,4 +1,26 @@
 Start srv.py. Needs to listen on localhost:5000
-Start ceph_osd with stub suppport
+  python srv.py
+Start ceph with stub suppport
+   MON=1 MDS=1 OSD=1 /home/seri/ceph/src/vstart.sh -d -n -X -l
 Run ./stub
+  ceph osd poolm create seri 42
+  ./stub --conf /mnt2/ceph.conf
+OR use "rados":
+  ceph osd poolm create seri 42
+  rados -p seri put foo <(echo "bar234234 $RANDOM")
+  rados -p seri stub foo
+  rados -p seri get foo -
+  rados -p seri stub foo
+  rados -p seri unstub foo
 
+OSD File is empty?
+  du -sh $(find ./ -iname "*foo__*")
+
+Web server:
+: DEBUG in srv [srv.py:17]:
+" saved obj "7fc1f406/foo/head//3" to /tmp/7fc1f406_foo_head_3
+
+cat /tmp/7fc1f406_foo_head_3
+
+cat object
+rados -p seri get foo -
